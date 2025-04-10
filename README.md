@@ -2,13 +2,8 @@
 
 ## Visão Geral
 
-Este projeto tem como objetivo realizar a migração de um sistema monolítico tradicional para uma arquitetura de **Monólito Modular (MOM)**. A refatoração busca melhorar a escalabilidade, modularidade e manutenibilidade do sistema através da aplicação de princípios como **Domain-Driven Design (DDD)**, **Command Query Responsibility Segregation (CQRS)** e **Arquitetura Limpa (AL)**.
-
-Neste documento, são abordados:
-- A arquitetura adotada e as tecnologias utilizadas;
-- Os desafios e soluções encontrados durante a migração;
-- **Como identificar os módulos?**
-- **Depois de identificados, como saber se os módulos estão bons?**
+Este projeto tem como objetivo realizar a migração de um sistema monolítico tradicional para uma arquitetura de **Monólito Modular (MOM)**. 
+A refatoração busca melhorar a escalabilidade, modularidade e manutenibilidade do sistema através da aplicação de princípios como **Domain-Driven Design (DDD)**, **Command Query Responsibility Segregation (CQRS)** e **Arquitetura Limpa (AL)**.
 
 ## Arquitetura Escolhida: Comparativo e Justificativas
 
@@ -50,23 +45,6 @@ A migração foi motivada pela necessidade de superar limitações do sistema mo
 - **Justificativa para a Mudança:**  
   Ao adotar o conceito de Monólito Modular, a equipe consegue manter a simplicidade do deploy e a consistência do ambiente monolítico, enquanto aproveita as vantagens da modularização para facilitar a manutenção, permitir escalabilidade seletiva e reduzir riscos durante mudanças.
 
-### Componentes da Arquitetura Monolítica Modular
-
-1. **Client (Front-end)**
-   - Desenvolvido com frameworks modernos (Angular, React, etc.).
-   - Comunicação com o back-end via APIs REST ou gRPC.
-
-2. **Módulos do Back-end**
-   - Cada módulo (ex.: Pedidos, Pagamentos, Catálogo, Usuários) implementa seu domínio utilizando conceitos de **Domain-Driven Design (DDD)** e **Arquitetura Limpa (AL)**.
-   - A comunicação entre módulos ocorre por meio de interfaces e eventos assíncronos, garantindo a separação de responsabilidades.
-
-3. **Server/Databases**
-   - Banco de dados relacional (como SQL Server ou PostgreSQL) organizado em tabelas específicas para cada módulo.
-   - Ferramentas de monitoramento e logging (ex.: Seq) para garantir a observabilidade e facilitar a resolução de problemas.
-
-4. **Contêineres e Orquestração**
-   - Uso de Docker para containerização, permitindo um deploy mais ágil e facilitando a escalabilidade e replicação dos ambientes (desenvolvimento, teste e produção).
-
 ### Comparativo Resumido
 
 | Aspecto               | Monolito Tradicional                                | Monólito Modular (MOM)                          |
@@ -76,6 +54,24 @@ A migração foi motivada pela necessidade de superar limitações do sistema mo
 | **Manutenção**        | Complexa e arriscada com mudanças em larga escala     | Mais simples, com testes e atualizações isoladas   |
 | **Deploy**            | Unificado, porém impactante em caso de alterações      | Simples e consistente, com possibilidade de deploys segmentados |
 | **Organização**       | Estrutura monolítica sem separação clara de domínios    | Organização alinhada com DDD, com responsabilidade bem definida |
+
+### Objetivos da Migração
+
+- **Escalabilidade**: Permitir que módulos críticos sejam escalados de forma independente.
+- **Modularidade**: Organizar o código e isolar domínios, facilitando manutenções e evoluções.
+- **Facilidade de Manutenção**: Reduzir o acoplamento entre funcionalidades e melhorar a testabilidade do sistema.
+- **Alta Disponibilidade**: Garantir resiliência e tolerância a falhas.
+- **Melhoria no Tempo de Resposta**: Otimizar a performance e reduzir a latência.
+
+### Estrutura do Sistema Migrado
+
+O sistema é dividido em módulos, onde cada um atua de forma autônoma dentro do mesmo processo. Exemplos de módulos:
+- **Módulo de Produtos**
+- **Módulo de Pedidos**
+- **Módulo de Atendimento**
+- **Módulo de Usuários (Autenticação e Autorização)**
+
+Cada módulo comunica-se por meio de interfaces e, quando necessário, utiliza eventos para interagir com outros módulos.
 
 ### Conclusão
 
@@ -87,37 +83,8 @@ A transição do monolito tradicional para o Monólito Modular foi realizada par
 
 A escolha por uma arquitetura modular dentro de um monólito representa um equilíbrio estratégico: mantendo a simplicidade do deploy monolítico e, ao mesmo tempo, ganhando a flexibilidade e robustez de uma estrutura modular.
 
-![Diagrama de Arquitetura do Monólito Modular](analyses/umls/architectures/diagrama-de-arquitetura-monolito-modular.png)
 ![Diagrama de Arquitetura do Monólito](analyses/umls/architectures/diagrama-de-arquitetura-monolito.png)
-
-## Tecnologias Utilizadas
-
-- **Arquitetura Limpa (AL)**
-- **Domain-Driven Design (DDD)**
-- **Command Query Responsibility Segregation (CQRS)**
-- **Monólito Modular (MOM)**
-- **Modelo C4** para documentação arquitetural
-- **Docker** para containerização
-- **CI/CD** (ex.: Azure Pipelines, Jenkins)
-- **Bancos de Dados Relacionais e NoSQL**
-
-## Objetivos da Migração
-
-- **Escalabilidade**: Permitir que módulos críticos sejam escalados de forma independente.
-- **Modularidade**: Organizar o código e isolar domínios, facilitando manutenções e evoluções.
-- **Facilidade de Manutenção**: Reduzir o acoplamento entre funcionalidades e melhorar a testabilidade do sistema.
-- **Alta Disponibilidade**: Garantir resiliência e tolerância a falhas.
-- **Melhoria no Tempo de Resposta**: Otimizar a performance e reduzir a latência.
-
-## Estrutura do Sistema
-
-O sistema é dividido em módulos, onde cada um atua de forma autônoma dentro do mesmo processo. Exemplos de módulos:
-- **Módulo de Produtos**
-- **Módulo de Pedidos**
-- **Módulo de Atendimento**
-- **Módulo de Usuários (Autenticação e Autorização)**
-
-Cada módulo comunica-se por meio de interfaces e, quando necessário, utiliza eventos para interagir com outros módulos.
+![Diagrama de Arquitetura do Monólito Modular](analyses/umls/architectures/diagrama-de-arquitetura-monolito-modular.png)
 
 ## Como Identificar os Módulos?
 
@@ -163,6 +130,18 @@ Após a identificação dos módulos, é fundamental avaliar a qualidade da divi
 
 - **Feedback Contínuo e Métricas:**
    - Utilize métricas de performance, logs e feedback dos usuários para ajustar a estrutura modular ao longo do tempo, garantindo que ela atenda às necessidades do negócio.
+
+## Tecnologias Utilizadas
+
+- **Arquitetura Limpa (AL)**
+- **Domain-Driven Design (DDD)**
+- **Command Query Responsibility Segregation (CQRS)**
+- **Monólito Modular (MOM)**
+- **Modelo C4** para documentação arquitetural
+- **Docker** para containerização
+- **Docker Compose** para orquestração de contêineres
+- **CI/CD** (ex.: Azure Pipelines, GitHub Actions) para automação de deploys
+- **Bancos de Dados Relacionais e NoSQL**
 
 ## Glossário
 
