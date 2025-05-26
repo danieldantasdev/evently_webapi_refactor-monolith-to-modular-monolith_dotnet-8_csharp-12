@@ -1,0 +1,57 @@
+@startuml modular_monolith_architecture
+'skinparam linetype ortho
+'!pragma layout smetana
+'left to right direction
+
+rectangle "Sales 360 - Modular Monolith" {
+    node "Client" as Client_Node {
+        [Web App] as WebApp_Client
+    }
+  
+    database "Database" as Database_Node {
+        database [<schema> Evently] as Evently_Database
+    }
+
+  node "Server" as Server_Node {
+    component "Docker Compose" as DockerCompose_Component {
+        node "Docker Container 1" #aliceblue;line:blue;line.dotted;text:blue {    
+            component "Authentication / Authorization" {
+              [Identity Provider] as IdentityProvider_AuthenticationAuthorization
+            }
+        }
+    
+        node "Docker Container 2" #aliceblue;line:blue;line.dotted;text:blue {
+            component "Cache" as Cache_Component {
+              [Distributed Cache] as DistributedCache_Cache
+            }
+        }
+        
+        node "Docker Container 3" #aliceblue;line:blue;line.dotted;text:blue {
+            component "Logging / Observability" as LoggingObservability_Component {
+              [Logging] as Logging_LoggingObservability
+              [Observability] as Observability_LoggingObservability
+            }
+        }
+        
+        node "Docker Container 4" #aliceblue;line:blue;line.dotted;text:blue {        
+            component "Backend" as Backend_Component {
+              [Evently] as Evently_Server
+            }
+        }
+    }
+}
+  
+' Client to Server
+WebApp_Client --> IdentityProvider_AuthenticationAuthorization : "Authenticate"
+WebApp_Client --> Evently_Server : "Api Requests"
+
+' Server to Database
+Evently_Server --> Evently_Database : "CRUD"
+
+' Server to Logging / Observability
+Evently_Server -[Dashed]-> Logging_LoggingObservability : "Log Events"
+
+' Server to Cache
+Backend_Component -[Dashed]-> DistributedCache_Cache : "Cache Products"
+}
+@enduml
