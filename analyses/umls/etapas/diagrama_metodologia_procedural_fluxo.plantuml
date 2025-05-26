@@ -1,0 +1,28 @@
+@startuml
+title Metodologia Procedural para Identificação de Módulos
+
+start
+
+:Etapa 1: Análise de Domínio (DDD)\nInput: Requisitos, Código\nProcesso: Linguagem Ubíqua, Event Storming, Mapeamento Contexto\nOutput: Contextos Delimitados Candidatos;
+
+:Etapa 2: Análise Estática\nInput: Código, Contextos Candidatos\nProcesso: Grafo Dependências, Métricas (CBO, Ca/Ce, LCOM)\nOutput: Módulos Refinados (Estrutura), Métricas Estáticas;
+
+:Etapa 3: Análise Dinâmica\nInput: Execução, Cenários\nProcesso: Fluxos Transação, Acoplamento Runtime\nOutput: Módulos Refinados (Comportamento);
+
+:Etapa 4: Análise de Evolução\nInput: Histórico Git\nProcesso: Análise Co-mudança, Acoplamento Temporal\nOutput: Módulos Refinados (Co-mudança);
+
+:Etapa 5: Integração e Validação Humana\nInput: Outputs Anteriores, Equipe\nProcesso: Síntese Evidências, Workshop Validação, Decisão Arquitetural\nOutput: Módulos Finais Documentados;
+
+if (Necessário Refinamento?) then (Sim)
+  -[#blue,dashed]-> E1 << Refinamento >>
+  note right
+    Ciclo de Feedback
+    para Etapas 1-4
+  end note
+  detach
+else (Não)
+  stop
+endif
+
+@enduml
+

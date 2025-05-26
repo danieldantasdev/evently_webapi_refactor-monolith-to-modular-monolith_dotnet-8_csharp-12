@@ -1,0 +1,80 @@
+@startuml
+!theme materia
+title Metodologia Procedural (Hierarquia)
+
+object "Metodologia Procedural" as Metodologia
+
+object "1. Análise de Domínio (DDD)" as E1
+object "Input (E1)" as E1_In
+object "Processo (E1)" as E1_Proc
+object "Output (E1)" as E1_Out
+Metodologia --> E1
+E1 --> E1_In : "Input"
+E1_In : Requisitos
+E1_In : Código
+E1 --> E1_Proc : "Processo"
+E1_Proc : Linguagem Ubíqua
+E1_Proc : Event Storming
+E1_Proc : Mapeamento Contexto
+E1 --> E1_Out : "Output"
+E1_Out : Contextos Candidatos
+
+object "2. Análise Estática" as E2
+object "Input (E2)" as E2_In
+object "Processo (E2)" as E2_Proc
+object "Output (E2)" as E2_Out
+Metodologia --> E2
+E2 --> E2_In : "Input"
+E2_In : Código
+E2_In : Contextos Candidatos
+E2 --> E2_Proc : "Processo"
+E2_Proc : Grafo Dependências
+E2_Proc : Métricas (CBO, Ca/Ce, LCOM)
+E2 --> E2_Out : "Output"
+E2_Out : Módulos Refinados (Estrutura)
+E2_Out : Métricas Estáticas
+
+object "3. Análise Dinâmica" as E3
+object "Input (E3)" as E3_In
+object "Processo (E3)" as E3_Proc
+object "Output (E3)" as E3_Out
+Metodologia --> E3
+E3 --> E3_In : "Input"
+E3_In : Execução
+E3_In : Cenários
+E3 --> E3_Proc : "Processo"
+E3_Proc : Fluxos Transação
+E3_Proc : Acoplamento Runtime
+E3 --> E3_Out : "Output"
+E3_Out : Módulos Refinados (Comportamento)
+
+object "4. Análise de Evolução" as E4
+object "Input (E4)" as E4_In
+object "Processo (E4)" as E4_Proc
+object "Output (E4)" as E4_Out
+Metodologia --> E4
+E4 --> E4_In : "Input"
+E4_In : Histórico Git
+E4 --> E4_Proc : "Processo"
+E4_Proc : Análise Co-mudança
+E4_Proc : Acoplamento Temporal
+E4 --> E4_Out : "Output"
+E4_Out : Módulos Refinados (Co-mudança)
+
+object "5. Integração e Validação Humana" as E5
+object "Input (E5)" as E5_In
+object "Processo (E5)" as E5_Proc
+object "Output (E5)" as E5_Out
+Metodologia --> E5
+E5 --> E5_In : "Input"
+E5_In : Outputs Anteriores
+E5_In : Equipe
+E5 --> E5_Proc : "Processo"
+E5_Proc : Síntese Evidências
+E5_Proc : Workshop Validação
+E5_Proc : Decisão Arquitetural
+E5 --> E5_Out : "Output"
+E5_Out : Módulos Finais Documentados
+
+@enduml
+
