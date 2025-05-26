@@ -8,22 +8,26 @@
 
 [Link para arquitetura escolhida](analyses/documentations/sections/2.md)
 
-## 3. Como identificar os Módulos dentro de um Monólito (para Migração a Monólito Modular)
+## 3. Diferenciais da Pesquisa em Relação à Literatura
 
-[Link para identificação de módulos](analyses/documentations/sections/3.md)
+[Link para diferenciais da pesquisa](analyses/documentations/sections/3.md)
 
-## 4. Como avaliar a Qualidade dos Módulos Identificados (“Módulos Bons”)
+## 4. Como identificar os Módulos dentro de um Monólito (para Migração a Monólito Modular)
 
-[Link para avaliação de módulos](analyses/documentations/sections/4.md)
+[Link para identificação de módulos](analyses/documentations/sections/4.md)
 
-## 5. Tecnologias Utilizadas
+## 5. Como avaliar a Qualidade dos Módulos Identificados (“Módulos Bons”)
 
-[Link para as tecnologias](analyses/documentations/sections/5.md)
+[Link para avaliação de módulos](analyses/documentations/sections/5.md)
 
-## 6. Glossário
+## 6. Tecnologias Utilizadas
 
-[Link para o Glossário](analyses/documentations/sections/6.md)
+[Link para as tecnologias](analyses/documentations/sections/6.md)
 
-## 7. Referências Utilizadas:
+## 7. Glossário
 
-[Link para as referências](analyses/documentations/sections/7.md)
+[Link para o Glossário](analyses/documentations/sections/7.md)
+
+## 8. Referências Utilizadas:
+
+[Link para as referências](analyses/documentations/sections/8.md)
