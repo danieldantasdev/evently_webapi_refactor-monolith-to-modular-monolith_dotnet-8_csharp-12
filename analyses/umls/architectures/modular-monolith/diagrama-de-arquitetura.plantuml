@@ -1,4 +1,4 @@
-@startuml
+@startuml modular_monolith_architecture
 'skinparam linetype ortho
 '!pragma layout smetana
 'left to right direction
