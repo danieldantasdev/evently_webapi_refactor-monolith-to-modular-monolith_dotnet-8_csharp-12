@@ -1,0 +1,138 @@
+%%
+%
+% ARQUIVO: main.tex
+%
+% VERSÃO: 1.1
+% DATA: Janeiro de 2016
+% AUTOR: Coordenação PPgSC
+% 
+%  Arquivo tex principal do documento de Dissertação.
+%  Este arquivo SÓ PRECISA SER MODIFICADO NA PARTE DE CONTEÚDO:
+%
+%    a. colocar um \include{•} para cada capítulo da Dissertação.
+%
+%%
+
+% -----
+% CLASSE DO DOCUMENTO DA PROPOSTA DE DISSERTAÇÃO
+% -----
+\documentclass{proposta}
+
+% -----
+% PACOTES LATEX USADOS NO DOCUMENTO DA PROPOSTA DE DISSERTAÇÃO
+% -----
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsfonts,amssymb}
+\usepackage[authoryear]{natbib}
+
+\usepackage{enumitem}
+\usepackage{rotating}
+\usepackage{lipsum}
+\usepackage{lastpage}
+\usepackage{stringstrings}
+\usepackage{pgffor}
+
+% -----
+% MARGENS DO DOCUMENTO DA PROPOSTA DE DISSERTAÇÃO
+% -----
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={210mm,297mm},
+	left=25mm,
+	right=25mm,
+	top=25mm,
+	bottom=30mm,
+	textwidth=160mm,
+	textheight=242mm,
+	headheight=0mm,
+	headsep=0mm,
+}
+
+% -----
+% DECLARAÇÕES AUXILIARES PARA REFERÊNCIAS
+%
+%  Diferencia \citet e \citep de acordo com a NBR 10520:2002
+% -----
+\DeclareRobustCommand{\NATand}{;}
+\DeclareRobustCommand{\NATetal}{et~al.}
+\makeatletter
+\renewcommand{\NAT@nmfmt}[1]{%
+  \ifNAT@swa\expandafter\MakeUppercase
+  \else\DeclareRobustCommand{\NATand}{ e}\expandafter\@firstofone\fi{{\NAT@up #1}}%
+}
+\makeatother
+
+% -----
+% AMBIENTE DE FIGURAS DA PROPOSTA DE DISSERTAÇÃO
+%
+%  A classe do documento está configurada SOMENTE para figuras no formato EPS.
+%  Logo, use PREFERENCIALMENTE este tipo de arquivo.
+%
+%    a. os arquivos das figuras devem estar no diretório 'img'
+% -----
+\graphicspath{{./figuras/}}
+
+% -----
+% INÍCIO DO DOCUMENTO DA PROPOSTA DE DISSERTAÇÃO
+% -----
+\begin{document}
+
+% -----
+% DADOS DA PROPOSTA DE DISSERTAÇÃO
+%  ALTERAR o arquivo dados-proposta.tex
+% -----
+\include{dados-proposta}
+
+
+% -----
+% PARTE PRÉ-TEXTUAL DA PROPOSTA DE DISSERTAÇÃO
+% -----
+\makecapa
+\maketitle
+
+\parindent 0.75cm
+
+
+% -----
+% PARTE DE CONTEÚDO DE SUA PROPOSTA DE DISSERTAÇÃO
+%
+% Alterar o conteúdo dos arquivos capitulo-02.tex / capitulo-03.tex / capitulo-04.tex
+% -----
+\include{capitulo-02}
+\include{capitulo-03}
+\include{capitulo-04}
+\include{capitulo-05}
+
+
+% -----
+% PARTE DE REFERÊCIAS BIBLIOGRÁFICAS DA DISSERTAÇÃO
+%
+%  As referências da Proposta de Dissertação devem estar no arquivo refs.bib
+%  Devem seguir o formato bibtex - ver Manual-Referencias.pdf para mais detalhes.
+% -----
+\bibliographystyle{proposta}
+\bibliography{refs}
+
+
+% -----
+% PARTE DE ASSINATURAS DE SUA PROPOSTA DE DISSERTAÇÃO
+% -----
+\preparatitulos
+\makeassinaturas
+
+
+% -----
+% FIM DO DOCUMENTO DE SUA PROPOSTA DE DISSERTAÇÃO
+% -----
+\label{theend}
+\end{document}
